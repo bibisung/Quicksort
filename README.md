@@ -6,15 +6,22 @@
 
 ## 기본 알고리즘
 ```javascript
-if(array.length <= 1) { return array }
-const pivot = array[0]
-const front = array.filter(num => num <= pivot)
-const back = array.filter(num => num > pivot)
-return solution(front).concat(pivot, solution(back))
+function quickSort(array) {
+    if(array.length <= 1) { return array }
+    const pivot = array[Math.floor(Math.random() * array.length)];
+    const front = array.filter(num => num < pivot)
+    const back = array.filter(num => num > pivot)
+    return quickSort(front).concat(pivot, quickSort(back))
+}
 ```
 
 ## 피벗 선택
 - 퀵 정렬에서 피벗 위치를 결정하는 방법에는 여러가지 방법이 있다. 기초적인 방법으로는 난수 분할이 사용되는데, 안정성이 떨어진다. 많은 라이브러리에서는 세 값(좌측 끝, 중앙, 우측 끝)의 중위법을 이용하여 분할한다. 이 방법을 사용하면 중앙에서 분할될 가능성이 높아 전체적으로 정렬의 성능이 좋아진다.
 
 ## 피벗 선택 알고리즘
+1. Median of Three
+2. Random pivot
 
+## 복잡도
+* 시간 복잡도: 최악 - O(n2), 최선 - O(nlogn), 평균 - O(nlogn)
+* 공간 복잡도: O(1)
